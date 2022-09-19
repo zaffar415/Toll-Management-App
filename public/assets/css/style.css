@@ -1,0 +1,287 @@
+body {
+  background: #f1f1f1;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.wrap {
+  padding: 0px 50px;
+}
+
+.spacing-top {
+  padding-top: 30px !important;
+}
+
+.spacing-bottom {
+  padding-bottom: 30px !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.p-1 {
+  padding: 10px;
+}
+
+.p-2 {
+  padding: 20px;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+ul.menu {
+  list-style: none;
+  padding: 0px;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.sidebar {
+  padding: 20px;
+}
+.sidebar ul li {
+  padding: 0px 0px;
+  border-bottom: 0.5px solid #dddddd;
+}
+.sidebar ul li a {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
+
+.form-group {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.form-group label {
+  margin-bottom: 10px;
+}
+.form-group input[type=text], .form-group input[type=search], .form-group select, .form-group option {
+  width: 250px;
+  padding: 8px;
+  border-radius: 4px;
+  margin: auto 10px;
+  border: 1px solid #dddddd;
+  background: #fff;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.form-group input[type=text].form-control, .form-group input[type=search].form-control, .form-group select.form-control, .form-group option.form-control {
+  width: 100%;
+  margin: 0px;
+  margin-top: 10px;
+}
+.form-group input[disabled] {
+  background: #ddd;
+}
+
+.form-message {
+  padding: 10px 20px;
+  border-radius: 2px;
+}
+.form-message.success {
+  border: 2px solid #c3e6cb;
+  background-color: #d4edda;
+  color: #155724;
+}
+.form-message.error {
+  border: 2px solid #ff0000;
+  background-color: #ffc8cb;
+  color: #ff0000;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dddddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+.card .card-head {
+  border-bottom: 1px solid #dddddd;
+}
+.card .card-content {
+  padding: 0px 30px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.table tr {
+  transition: 300ms;
+}
+.table tr:hover {
+  background-color: #f1f1f1;
+  transition: 300ms;
+}
+.table th {
+  background: #333;
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.table td {
+  padding: 10px;
+}
+
+.mt-1 {
+  margin-top: 10px;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 8px 15px;
+  background: #12B0E8;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  transition: 300ms linear;
+  border: none;
+}
+.btn:hover {
+  background-color: #207398;
+  transition: 300ms linear;
+}
+.btn.btn-danger {
+  background: #EB4D4B;
+  cursor: pointer;
+}
+.btn.btn-danger:hover {
+  background: #B4161B;
+}
+.btn.outlined {
+  border: 1px solid #12B0E8;
+  background: #fff;
+  color: #12B0E8;
+  padding: 6px 15px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 100px auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%; /* Could be more or less, depending on screen size */
+  -webkit-animation-name: animatetop;
+          animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  position: fixed;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}/*# sourceMappingURL=style.css.map */
