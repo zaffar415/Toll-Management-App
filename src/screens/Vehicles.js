@@ -5,46 +5,48 @@ import AddToll from '../components/AddToll';
 import AddVehicle from '../components/AddVehicle';
 import Pagination from '../components/Pagination';
 
-const Vehicles = ({vehicles, tolls}) => {
+const Vehicles = (props) => {
 
     const [modalVisibility, setModalVisibility] = useState('none')    
     const [tollModalVisibility, setTollModalVisibility] = useState('none')    
     const [search, setSearch] = useState('')
-    const [tollIndex, setTollIndex] = useState('')
+    const [tollName, setTollName] = useState('')
     const limit = 5;
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)           
-    
+        
 
-    const TBody = ({vehicles}) => {
-
+    const TBody = ({setTotalPages}) => {
+        let _vehicles = props.vehicles;
         if(search !== '') {
-            vehicles = vehicles.filter((vehicle) => vehicle.number.includes(search))
+            _vehicles = _vehicles.filter((vehicle) => vehicle.number.toLowerCase().includes(search.toLowerCase()))
         }
         
-        if(tollIndex !== '') {
-            vehicles = vehicles.filter((vehicle) => vehicle.toll == tollIndex)
+        if(tollName !== '') {               
+            _vehicles = _vehicles.filter((vehicle) => vehicle.toll === tollName)
         }
         
         let rows = []
-        if(vehicles) {
+        if(_vehicles.length) {
+            
             let start = (currentPage * limit) - limit
-            for(let i=start - 1; i<start+limit; i++) {                
-                if(vehicles[i]) {                                                
-                    rows.push(<tr>
-                        <td>{vehicles[i].type}</td>
-                        <td>{vehicles[i].number}</td>
-                        <td>{vehicles[i].date}</td>
-                        <td>{tolls[vehicles[i].toll] ? tolls[vehicles[i].toll].name : 'N/A' }</td>
-                        <td>{vehicles[i].tariff}</td>
+            for(let i=start; i<start+limit; i++) {                
+                if(_vehicles[i]) {                                                
+                    rows.push(<tr key={i}>
+                        <td>{i+1}</td>
+                        <td>{_vehicles[i].type}</td>
+                        <td>{_vehicles[i].number}</td>
+                        <td>{_vehicles[i].date}</td>
+                        <td>{_vehicles[i].toll}</td>
+                        <td>{_vehicles[i].tariff}</td>
                     </tr>);
                 }
             }                        
-            setTotalPages(tolls.length > limit ? Math.floor(vehicles.length/limit) + 1 : 1);            
+            setTotalPages(props.tolls.length > limit ? Math.floor(_vehicles.length/limit) + 1 : 1);            
             
         } else {
             rows.push(<tr>
-                <td colspan="5">No Vehicles Found</td>
+                <td colspan="5" className='text-center'>No Vehicles Found</td>
             </tr>);
         }
 
@@ -75,12 +77,12 @@ const Vehicles = ({vehicles, tolls}) => {
                                 <div className="form-group">
                                     <label> Filter By TollName :</label>
                                     <select
-                                    value={tollIndex}
-                                    onChange={(e) => setTollIndex(e.target.value)}
+                                    value={tollName}
+                                    onChange={(e) => setTollName(e.target.value)}
                                     >
                                         <option value="">-- None --</option>
-                                        {tolls && tolls.map((toll, key) => (
-                                            <option value={key} key={key}>{toll.name}</option>
+                                        {props.tolls && props.tolls.map((toll, key) => (
+                                            <option value={toll.name} key={key}>{toll.name}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -96,6 +98,7 @@ const Vehicles = ({vehicles, tolls}) => {
                         <table className="table">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Vehicle Type</th>
                                     <th>vehicle Number</th>
                                     <th>Date/Time</th>
@@ -104,7 +107,7 @@ const Vehicles = ({vehicles, tolls}) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <TBody vehicles={vehicles} />
+                                <TBody setTotalPages={setTotalPages} />
                             </tbody>
                         </table>                        
                     </div>                    

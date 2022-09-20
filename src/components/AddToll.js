@@ -9,75 +9,86 @@ const AddToll = ({addToll}) => {
     const [name, setName] = useState('')
     const [vehicles, setVehicles] = useState([])
     const [message, setMessage] = useState(null)    
-    
+    const [loader, setLoader] = useState(false);
+
     const submitHandler = (e) => {
         e.preventDefault();
-        setMessage(null);
-        if(!name) {
+        setLoader(true)
+        setMessage(null);    
+        // Delaying the process to show loader and experice the real world application
+        setTimeout(() => {
+            if(!name) {
+                setMessage({
+                    type:'error',
+                    text:"Name is required"
+                });
+                setLoader(false)
+
+                return false;
+            }        
+    
+            let _message = {}
+    
+            vehicles.map((vehicle) => {
+                for(let index in vehicle) {
+                    if(vehicle[index] === '') {
+                        _message = {
+                            type:'error',
+                            text:"All Fields are required"
+                        };                    
+
+                        break;
+                    }
+                }             
+                return true;
+            })
+    
+            if(_message.text) {            
+                setMessage(_message)
+                setLoader(false)
+                return false;
+            }
+    
+            addToll({
+                name, 
+                vehicles,
+            });
+            
+            setLoader(false)
             setMessage({
-                type:'error',
-                text:"Name is required"
+                type:"success",
+                text: "Toll Added Successfully",
             });
-        }        
-
-        let _message = {}
-
-        vehicles.map((vehicle) => {
-            for(let index in vehicle) {
-                if(vehicle[index] == '') {
-                    _message = {
-                        type:'error',
-                        text:"All Fields are required"
-                    };                    
-
-                    break;
-                }
-            }             
-        })
-
-        if(_message.text) {            
-            setMessage(_message)
-            return false;
-        }
-
-        addToll({
-            name, 
-            vehicles,
-        });
-        
-
-        setMessage({
-            type:"success",
-            text: "Toll Added Successfully",
-        });
-
-        let _vehicles = [];
-        VehicleTypes.map((type, key) => {            
-            _vehicles.push({
-                type: "",
-                single: "",
-                return: ""
+    
+            let _vehicles = [];
+            VehicleTypes.map((type, key) => {            
+                return _vehicles.push({
+                    type: "",
+                    single: "",
+                    return: ""
+                });
             });
-        });
-        setVehicles(_vehicles);
-        setName('')
-        e.target.reset();
+            setVehicles(_vehicles);
+            setName('')
+            e.target.reset();
+        }, 1000)
+            
         
     }
 
     useLayoutEffect(() => {
         let _vehicles = [];
         VehicleTypes.map((type, key) => {            
-            _vehicles.push({
+            return _vehicles.push({
                 type: "",
                 single: "",
                 return: ""
             });
         });
-        if(vehicles.length == 0) {
+        if(vehicles.length === 0) {
             setVehicles(_vehicles);
         }        
-    })
+    }, [vehicles])
 
     return (                      
         <div className='card'> 
@@ -118,7 +129,7 @@ const AddToll = ({addToll}) => {
                                     </div>
                                     <div className='form-group'>
                                         <input 
-                                        type="text" 
+                                        type="number" 
                                         placeholder='Single Journey'
                                         value={value.single}
                                         onChange={(e) => {                                            
@@ -130,7 +141,7 @@ const AddToll = ({addToll}) => {
                                     </div>
                                     <div className='form-group'>
                                         <input 
-                                        type="text" 
+                                        type="number" 
                                         placeholder='Return Journey'
                                         value={value.return}
                                         onChange={(e) => {
@@ -143,7 +154,7 @@ const AddToll = ({addToll}) => {
                                 </div>
                             ))}                                                    
                     </div>
-
+                    {loader && <div><div class="loader"></div> Please wait....</div>}
                     {message && (
                         <div className={`form-message ${message.type}`}>
                             <span>{message.text}</span>

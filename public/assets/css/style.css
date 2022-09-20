@@ -106,7 +106,7 @@ ul.menu {
 .form-group label {
   margin-bottom: 10px;
 }
-.form-group input[type=text], .form-group input[type=search], .form-group select, .form-group option {
+.form-group input[type=text], .form-group input[type=number], .form-group input[type=search], .form-group select, .form-group option {
   width: 250px;
   padding: 8px;
   border-radius: 4px;
@@ -116,7 +116,7 @@ ul.menu {
   max-width: 100%;
   box-sizing: border-box;
 }
-.form-group input[type=text].form-control, .form-group input[type=search].form-control, .form-group select.form-control, .form-group option.form-control {
+.form-group input[type=text].form-control, .form-group input[type=number].form-control, .form-group input[type=search].form-control, .form-group select.form-control, .form-group option.form-control {
   width: 100%;
   margin: 0px;
   margin-top: 10px;
@@ -145,23 +145,21 @@ ul.menu {
   border: 1px solid #dddddd;
   padding: 10px;
   border-radius: 5px;
+  padding: 10px 30px;
 }
 .card .card-head {
   border-bottom: 1px solid #dddddd;
 }
-.card .card-content {
-  padding: 0px 30px;
-}
-
 .table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
-  margin-top: 40px;
+  margin-top: 10px;
   margin-bottom: 40px;
 }
 .table tr {
   transition: 300ms;
+  border-bottom: 1px solid #dddddd;
 }
 .table tr:hover {
   background-color: #f1f1f1;
@@ -221,44 +219,39 @@ ul.menu {
   margin-bottom: 30px;
 }
 
-/* The Modal (background) */
+/* The Modal */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
-
-/* Modal Content/Box */
-.modal-content {
+.modal .modal-content {
   background-color: #fefefe;
-  margin: 100px auto; /* 15% from the top and centered */
+  border-radius: 5px;
+  margin: 100px auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 70%; /* Could be more or less, depending on screen size */
+  width: 70%;
   -webkit-animation-name: animatetop;
           animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
           animation-duration: 0.4s;
 }
-
-/* The Close Button */
-.close {
+.modal .close {
   color: #aaa;
   right: 15px;
   font-size: 28px;
   font-weight: bold;
   position: fixed;
 }
-
-.close:hover,
-.close:focus {
+.modal .close:hover,
+.modal .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -283,5 +276,31 @@ ul.menu {
   to {
     top: 0;
     opacity: 1;
+  }
+}
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #12B0E8;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }/*# sourceMappingURL=style.css.map */

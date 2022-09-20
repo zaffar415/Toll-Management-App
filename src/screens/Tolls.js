@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect} from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AddToll from '../components/AddToll';
@@ -31,20 +31,22 @@ const Tolls = (props) => {
     const Tbody = () => {
 
         // Filter Items
-        let tolls = search === '' ? props.tolls : props.tolls.filter((toll) => toll.name.includes(search))
+        let tolls = search === '' ? props.tolls : props.tolls.filter((toll) => toll.name.toLowerCase().includes(search.toLowerCase()))
 
         let rows = []
         let start = (currentPage * limit) - limit
-        if(tolls) {
+        if(tolls.length) {
             for(let i=start ; i<start+limit; i++) {
                 let Vehicles = [];
                 if(tolls[i]) {
 
                     VehicleTypes.map((val) => {
-                        let v = tolls[i].vehicles.filter((toll) => toll.type == val)                         
-                        Vehicles.push(<td>{v[0]?.single}/{v[0]?.return}</td>)
+                        let v = tolls[i].vehicles.filter((toll) => toll.type === val)                         
+                        Vehicles.push(<td key={val}>{v[0]?.single}/{v[0]?.return}</td>)
+                        return true
                     })                                          
-                    rows.push(<tr>
+                    rows.push(<tr key={i}>
+                        <td>{i+1}</td>
                         <td>{tolls[i].name}</td>
                         {Vehicles}                    
                         <td><button className='btn btn-danger' onClick={() => deleteHandler(i)}>Delete</button></td>
@@ -56,7 +58,7 @@ const Tolls = (props) => {
             
         } else {
             rows.push(<tr>
-                <td colspan="5">No Tolls Found</td>
+                <td colspan="6" className='text-center'>No Tolls Found</td>
             </tr>);
         }
 
@@ -87,9 +89,10 @@ const Tolls = (props) => {
                         </div>                        
                     </div>
                     <div className='card-content spacing-top'>                        
-                        <table className="table mt-1">
+                        <table className="table">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>TollName</th>
                                     <th>Car/Jeep/Van</th>
                                     <th>LCV</th>

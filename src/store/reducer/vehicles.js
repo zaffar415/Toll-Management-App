@@ -1,4 +1,4 @@
-import {ADD_VEHICLE} from '../actions/actionTypes'
+import {ADD_VEHICLE, DELETE_ALL_VEHICLES} from '../actions/actionTypes'
 
 const initialState = [];
 
@@ -10,6 +10,9 @@ export default (state = initialState, action) => {
                 ...state, 
                 action.payload,
             ];
+
+        case DELETE_ALL_VEHICLES : 
+            return initialState;
 
         default : 
             return state;

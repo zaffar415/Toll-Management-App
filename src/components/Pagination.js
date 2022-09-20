@@ -27,6 +27,7 @@ const Pagination = ({currentPage, setCurrentPage, totalPages}) => {
                     currentPage - 1
                 ].map((val, key) => val >= 1 && (
                     <button
+                    key={key}
                     className='btn'
                     onClick={() => setCurrentPage(val)}>
                         {val}
@@ -39,6 +40,7 @@ const Pagination = ({currentPage, setCurrentPage, totalPages}) => {
                     currentPage + 2
                 ].map((val, key) => val <= totalPages && (
                     <button
+                    key={key}
                     className='btn'
                     onClick={() => setCurrentPage(val)}>
                         {val}

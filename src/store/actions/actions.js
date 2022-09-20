@@ -1,4 +1,4 @@
-import { ADD_TOLL, UPDATE_TOLL } from "./actionTypes";
+import { ADD_TOLL, UPDATE_TOLL, DELETE_ALL_TOLLS } from "./actionTypes";
 
 
 export const addToll = (payload) => {
@@ -12,5 +12,11 @@ export const updateToll = (payload) => {
     return {
         type:UPDATE_TOLL,
         payload
+    }
+}
+
+export const deleteAllTolls = (payload) => {
+    return {
+        type:DELETE_ALL_TOLLS,
     }
 }

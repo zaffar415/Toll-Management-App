@@ -1,4 +1,4 @@
-import {ADD_TOLL, UPDATE_TOLL} from '../actions/actionTypes'
+import {ADD_TOLL, DELETE_ALL_TOLLS, UPDATE_TOLL} from '../actions/actionTypes'
 
 const initialState = [];
 
@@ -13,6 +13,9 @@ export default (state = initialState, action) => {
 
         case UPDATE_TOLL : 
             return action.payload;            
+
+        case DELETE_ALL_TOLLS : 
+            return initialState;            
 
         default :
             return state;
