@@ -4,6 +4,21 @@ body {
     padding:0;
 }
 
+.page-content {
+    min-height: 85vh;    
+}
+
+.footer-bar {
+    background :#333;
+    color: #fff;
+    padding:10px;
+    margin-bottom:0px;
+
+    a {
+        color:rgb(0, 170, 255);
+    }
+}
+
 .container {
     max-width: 1300px;
     margin:auto;

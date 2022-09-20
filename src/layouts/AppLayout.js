@@ -6,11 +6,13 @@ const AppLayout = (props) => {
     return (
         <>            
             <main id="main">
-                <section className="container">
-                    <Header />
-                        {props.children}                        
-                    <Footer />                  
-                </section>
+                <Header />
+                    <section className="container">
+                            <div className='page-content'>
+                                {props.children}                        
+                            </div>
+                    </section>
+                <Footer />                  
             </main>
         </>
     )    

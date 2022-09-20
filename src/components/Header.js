@@ -5,7 +5,7 @@ import { deleteAllVehicles } from '../store/actions/vehicleActions';
 
 const Header = ({deleteAllTolls, deleteAllVehicles}) => {
     return (
-        <header>
+        <header className='container'>
             <div className='wrap'>
                 <div className='flex-between'>
                     <h1>
